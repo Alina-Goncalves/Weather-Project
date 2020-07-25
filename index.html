@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather Forecast</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="appName">
+          Weather Forescast
+        </div>
+        <form id="inputForm">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <input
+                  type="text"
+                  placeholder="Enter a City"
+                  autocomplete="off"
+                  autofocus="on"
+                  class="form-control"
+                  id="inputCity"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+        <button id="geoLocation">
+          <img
+            src="images/round-pushpin.png"
+            alt="location-pin"
+            width="24px"
+            class="pinLocation"
+          />
+        </button>
+      </header>
+      <br />
+      <section>
+        <h1 id="city">
+          Porto
+        </h1>
+        <br />
+        <h2 id="currentTemp">
+          24
+        </h2>
+        <a href="#" class="degrees" id="getDegrees">
+          °C
+        </a>
+        <span class="bar">|</span>
+        <a href="#" class="fahrenheit" id="getFahrenheit">
+          °F
+        </a>
+        <div class="presentDate">
+          Today
+          <span class="presentAllDate" id="currentDate"></span>
+          <span class="time" id="currentTime">
+            18:18
+          </span>
+        </div>
+        <div class="weatherDescription">
+          Few Clouds
+        </div>
+        <div class="dayTemperature">
+          <span class="dayMaxTemperature"> --° </span> /
+          <span class="dayMinTemperature"> --° </span>
+        </div>
+        <br />
+        <br />
+      </section>
+      <section>
+        <ul class="dayInfo">
+          <li>
+            <img
+              src="images/humidity.png"
+              alt="humidity"
+              width="16px"
+              class="emojiInfo"
+            />
+            <span id="humidity">--%</span>
+          </li>
+          <li>
+            <img
+              src="images/wind-blowing-face.png"
+              alt="wind-blowing-face"
+              width="16px"
+              class="emojiInfo"
+            />
+            <span id="wind">-- km/h</span>
+          </li>
+          <li>
+            <img
+              src="images/precipitation.png"
+              alt="precipitation"
+              width="16px"
+              class="emojiInfo"
+              id="precipitation"
+            />
+            --%
+          </li>
+          <li>
+            <span class="badge badge-info emojiInfo" id="uv-light">
+              UV
+            </span>
+            --
+          </li>
+        </ul>
+      </section>
+      <section>
+        <div class="bigWeatherSymbol">
+          <img src="images/sun-small-cloud.png" alt="sun-small-cloud" id="bigEmoji"/>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols">
+                  <img src="images/sun.png" alt="sun" width="50px" />
+                </div>
+                <br />
+                <strong>
+                  Sun 28
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature"> 28° </span>/
+                  <span class="minTemperature"> 20°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols">
+                  <img src="images/sun-big-cloud.png" alt="sun" width="52px" />
+                </div>
+                <br />
+                <strong>
+                  Mon 29
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature">24° </span>/
+                  <span class="minTemperature"> 20°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols">
+                  <img
+                    src="images/sun-cloud-rain.png"
+                    alt="sun-cloud-rain"
+                    width="50px"
+                  />
+                </div>
+                <br />
+                <strong>
+                  Tue 30
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature">22° </span>/
+                  <span class="minTemperature"> 16°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols">
+                  <img
+                    src="images/cloud-rain.png"
+                    alt="cloud-rain"
+                    width="50px"
+                  />
+                </div>
+                <br />
+                <strong>
+                  Wed 01
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature">23°</span> /
+                  <span class="minTemperature"> 15°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols">
+                  <img
+                    src="images/thunder-cloud-rain.png"
+                    alt="thunder-cloud-rain"
+                    width="50px"
+                  />
+                </div>
+                <br />
+                <strong>
+                  Thu 02
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature">26° </span> /
+                  <span class="minTemperature"> 19°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <p>
+          Coded by Alina Gonçalves
+        </p>
+      </footer>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>
