@@ -41,7 +41,7 @@ button:hover {
 
 .container {
   display: block;
-  margin: 13px auto;
+  margin: 5px auto 13px;
   width: 700px;
   height: 600px;
   background-image: linear-gradient(to top, #fde6b3 0%, #d1fdff 100%);
