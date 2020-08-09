@@ -87,6 +87,43 @@ function getWeather(response) {
 
   let currentDate = document.querySelector("#currentDateTime");
   currentDate.innerHTML = getDate(response.data.dt * 1000);
+
+  let windDir = document.querySelector("#windDirection");
+  let deg = response.data.wind.deg;
+
+  if ((deg >= 11.25) & (deg < 33.75)) {
+    windDir.innerHTML = `\xa0NNE`;
+  } else if ((deg >= 33.75) & (deg < 56.25)) {
+    windDir.innerHTML = `\xa0NE`;
+  } else if ((deg >= 56.25) & (deg < 78.75)) {
+    windDir.innerHTML = `\xa0ENE`;
+  } else if ((deg >= 78.75) & (deg < 101.25)) {
+    windDir.innerHTML = `\xa0E`;
+  } else if ((deg >= 101.25) & (deg < 123.75)) {
+    windDir.innerHTML = `\xa0ESE`;
+  } else if ((deg >= 123.75) & (deg < 146.25)) {
+    windDir.innerHTML = `\xa0SE`;
+  } else if ((deg >= 146.25) & (deg < 168.75)) {
+    windDir.innerHTML = `\xa0SSE`;
+  } else if ((deg >= 168.75) & (deg < 191.25)) {
+    windDir.innerHTML = `\xa0S`;
+  } else if ((deg >= 191.25) & (deg < 213.75)) {
+    windDir.innerHTML = `\xa0SSW`;
+  } else if ((deg >= 213.75) & (deg < 236.25)) {
+    windDir.innerHTML = `\xa0SW`;
+  } else if ((deg >= 236.25) & (deg < 258.75)) {
+    windDir.innerHTML = `\xa0WSW`;
+  } else if ((deg >= 258.75) & (deg < 281.25)) {
+    windDir.innerHTML = `\xa0W`;
+  } else if ((deg >= 281.25) & (deg < 303.75)) {
+    windDir.innerHTML = `\xa0WNW`;
+  } else if ((deg >= 303.75) & (deg < 326.25)) {
+    windDir.innerHTML = `\xa0NW`;
+  } else if ((deg >= 326.25) & (deg < 348.75)) {
+    windDir.innerHTML = `\xa0NNW`;
+  } else {
+    return (windDir.innerHTML = `\xa0N`);
+  }
 }
 
 function showPosition(position, city) {
