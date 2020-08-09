@@ -5,17 +5,17 @@ h2 {
 }
 
 h1 {
-  margin: -8px 0 14px 35px;
+  margin: -6px 0 14px 35px;
   font-family: "Roboto", sans-serif;
-  font-size: 39px;
+  font-size: 37px;
 }
+
 h2 {
   float: right;
   font-size: 65px;
-  position: relative;
-  top: -50px;
-  left: -85px;
+  margin: -50px 86px;
 }
+
 p {
   text-align: center;
   font-size: 10px;
@@ -24,11 +24,11 @@ p {
 }
 
 button {
+  display: block;
   border: 1px solid rgb(198, 209, 207);
   border-radius: 5px;
   padding: 5px 6px;
   background-color: transparent;
-  display: block;
   margin: -53px 272px 17px;
   transition: all 200ms ease-in-out;
 }
@@ -41,7 +41,7 @@ button:hover {
 
 .container {
   display: block;
-  margin: 5px auto 13px;
+  margin: 12px auto 13px;
   width: 700px;
   height: 600px;
   background-image: linear-gradient(to top, #fde6b3 0%, #d1fdff 100%);
@@ -60,7 +60,7 @@ button:hover {
 
 .presentDate {
   margin-left: 35px;
-  font-size: 19px;
+  font-size: 17px;
 }
 
 .presentAllDate {
@@ -77,9 +77,8 @@ button:hover {
 
 .degrees {
   float: right;
-  position: relative;
-  top: -43px;
-  right: -20px;
+  float: right;
+  margin: -43px 60px;
   color: black;
   transition: all 200ms ease-in-out;
 }
@@ -91,9 +90,7 @@ button:hover {
 
 .fahrenheit {
   float: right;
-  position: relative;
-  top: -43px;
-  right: -72px;
+  margin: -43px 30px;
   color: black;
   transition: all 200ms ease-in-out;
 }
@@ -106,9 +103,14 @@ button:hover {
 
 .bar {
   float: right;
-  position: relative;
-  top: -45px;
-  right: -47px;
+  margin: -44px 50px;
+}
+
+.dayTemperature {
+  float: right;
+  clear: right;
+  margin-top: -20px;
+  font-size: 20px;
 }
 
 .dayMaxTemperature {
@@ -118,6 +120,7 @@ button:hover {
 }
 
 .dayMinTemperature {
+  font-size: 20px;
   color: #1f4068;
 }
 
@@ -126,7 +129,8 @@ button:hover {
   font-size: 13px;
   line-height: 2;
   padding-left: 55px;
-  margin-top: -28px;
+  margin-top: 3px;
+  margin-bottom: 30px;
   text-transform: none;
 }
 
@@ -136,29 +140,20 @@ button:hover {
 
 .weatherDescription {
   float: right;
-  position: relative;
-  top: 30px;
-  right: -55px;
+  margin: 35px 15px;
   font-size: 12px;
 }
 
-.dayTemperature {
-  position: relative;
-  top: 65px;
-  left: 565px;
-  font-size: 20px;
-}
-
 .bigWeatherSymbol {
-  width: 70px;
+  width: 60px;
   height: 38px;
 }
 
 .bigWeatherSymbol img {
   position: relative;
-  top: -220px;
+  top: -210px;
   right: -260px;
-  height: 200px;
+  height: 170px;
 }
 
 .card {
@@ -172,15 +167,16 @@ button:hover {
 .card:hover {
   border: 1px solid #086972;
   box-shadow: 9px 9px 86px #d1fdff;
-  cursor: pointer;
+  cursor: default;
 }
 
 .card-body {
-  padding: 10px;
+  padding: 15px;
 }
 
-.weatherSymbols {
-  font-size: 30px;
+.weatherSymbols img {
+  width: 56px;
+  height: 56px;
 }
 
 .maxTemperature {
