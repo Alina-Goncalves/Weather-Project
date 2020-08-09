@@ -19,7 +19,7 @@ h2 {
 p {
   text-align: center;
   font-size: 10px;
-  margin: 18px 0 0 0;
+  margin: 16px 0 0 0;
   text-transform: none;
 }
 
@@ -42,7 +42,7 @@ button:hover {
 .container {
   display: block;
   margin: 12px auto 13px;
-  width: 700px;
+  max-width: 700px;
   height: 600px;
   background-image: linear-gradient(to top, #fde6b3 0%, #d1fdff 100%);
   border: 1px solid #086972;
@@ -79,6 +79,7 @@ button:hover {
 .units .active {
   color: black;
 }
+
 .degrees:hover {
   text-decoration: none;
   color: black;
@@ -148,7 +149,7 @@ button:hover {
 .bigWeatherSymbol img {
   position: relative;
   top: -210px;
-  right: -260px;
+  right: -275px;
   height: 170px;
 }
 
