@@ -1,7 +1,6 @@
-let presentDay = new Date();
-
-function getDate(date) {
-  let dates = date.getDate();
+function getDate(timestamp) {
+  let date = new Date(timestamp);
+  let presentDate = date.getDate();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   let months = [
     "Jan",
@@ -20,13 +19,11 @@ function getDate(date) {
   let weekDays = days[date.getDay()];
   let month = months[date.getMonth()];
 
-  let displayDate = `${weekDays}, ${month} ${dates}`;
-  return displayDate;
+  return `${weekDays}, ${month} ${presentDate} \xa0\xa0 ${getTime(timestamp)}`;
 }
-let currentDate = document.querySelector("#currentDate");
-currentDate.innerHTML = getDate(presentDay);
 
-function getTime(date) {
+function getTime(timestamp) {
+  let date = new Date(timestamp);
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
@@ -36,11 +33,8 @@ function getTime(date) {
     minutes = `0${minutes}`;
   }
 
-  let displayTime = `${hours}:${minutes}`;
-  return displayTime;
+  return `${hours}:${minutes}`;
 }
-let currentTime = document.querySelector("#currentTime");
-currentTime.innerHTML = getTime(presentDay);
 
 function apiSearch(city) {
   let apiKey = "06b5f102b5d87678883f70debd49073e";
@@ -90,6 +84,9 @@ function getWeather(response) {
 
   let city = document.querySelector("#city");
   city.innerHTML = response.data.name;
+
+  let currentDate = document.querySelector("#currentDateTime");
+  currentDate.innerHTML = getDate(response.data.dt * 1000);
 }
 
 function showPosition(position, city) {
@@ -110,3 +107,5 @@ function getLocation() {
 }
 let geoButton = document.querySelector("#geoLocation");
 geoButton.addEventListener("click", getLocation);
+
+apiSearch("Porto");
