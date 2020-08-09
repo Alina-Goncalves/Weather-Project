@@ -56,7 +56,6 @@ let formCity = document.querySelector("#inputForm");
 formCity.addEventListener("submit", getCity);
 
 function getWeather(response) {
-  console.log(response.data);
   celsiusTemp = response.data.main.temp;
   celsiusMaxTemp = response.data.main.temp_max;
   celsiusMinTemp = response.data.main.temp_min;
@@ -142,7 +141,7 @@ function getWeather(response) {
   } else if (icon === "09d" || icon === "09n") {
     displayIcon.innerHTML = `<img src="images/shower-rain.png" alt="shower-rain"/>`;
   } else if (icon === "10d") {
-    displayIcon.innerHTML = `<img src="images/sun-cloud-rain.png" alt="rain"/>`;
+    displayIcon.innerHTML = `<img src="images/sun-cloud-rain.png" alt="sun-cloud-rain"/>`;
   } else if (icon === "10n") {
     displayIcon.innerHTML = `<img src="images/cloud-rain.png" alt="rain"/>`;
   } else if (icon === "11d" || icon === "11n") {
@@ -170,6 +169,18 @@ function changeUnitCels(event) {
   let displayMinTemp = document.querySelector(".dayMinTemperature");
   displayMinTemp.innerHTML = ` / ${Math.round(celsiusMinTemp)}°`;
 
+  let forecastMaxTemp = document.querySelectorAll(".maxTemperature");
+  forecastMaxTemp.forEach(function (item) {
+    let maxTemp = item.innerHTML;
+    item.innerHTML = Math.round(((maxTemp - 32) * 5) / 9);
+  });
+
+  let forecastMinTemp = document.querySelectorAll(".minTemperature");
+  forecastMinTemp.forEach(function (item) {
+    let minTemp = item.innerHTML;
+    item.innerHTML = Math.round(((minTemp - 32) * 5) / 9);
+  });
+
   degrees.removeEventListener("click", changeUnitCels);
   fahrenheit.addEventListener("click", changeUnitFahr);
 
@@ -194,6 +205,18 @@ function changeUnitFahr(event) {
 
   let fahrenheitMinTemp = (celsiusMinTemp * 9) / 5 + 32;
   displayMinTemp.innerHTML = ` / ${Math.round(fahrenheitMinTemp)}°`;
+
+  let forecastMaxTemp = document.querySelectorAll(".maxTemperature");
+  forecastMaxTemp.forEach(function (item) {
+    let maxTemp = item.innerHTML;
+    item.innerHTML = Math.round((maxTemp * 9) / 5 + 32);
+  });
+
+  let forecastMinTemp = document.querySelectorAll(".minTemperature");
+  forecastMinTemp.forEach(function (item) {
+    let minTemp = item.innerHTML;
+    item.innerHTML = Math.round((minTemp * 9) / 5 + 32);
+  });
 
   fahrenheit.removeEventListener("click", changeUnitFahr);
   degrees.addEventListener("click", changeUnitCels);
@@ -258,7 +281,7 @@ function forecastEmoji(icon) {
   } else if (icon === "09d" || icon === "09n") {
     emoji = `<img src="images/shower-rain.png" alt="shower-rain"/>`;
   } else if (icon === "10d") {
-    emoji = `<img src="images/sun-cloud-rain.png" alt="rain"/>`;
+    emoji = `<img src="images/sun-cloud-rain.png" alt="sun-cloud-rain"/>`;
   } else if (icon === "10n") {
     emoji = `<img src="images/cloud-rain.png" alt="rain"/>`;
   } else if (icon === "11d" || icon === "11n") {
