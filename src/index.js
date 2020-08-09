@@ -41,6 +41,10 @@ function apiSearch(city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
 
   axios.get(`${apiUrl}&appid=${apiKey}`).then(getWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast/?q=${city}&units=metric`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(getForecast);
 }
 
 function getCity(event) {
@@ -52,6 +56,7 @@ let formCity = document.querySelector("#inputForm");
 formCity.addEventListener("submit", getCity);
 
 function getWeather(response) {
+  console.log(response.data);
   celsiusTemp = response.data.main.temp;
   celsiusMaxTemp = response.data.main.temp_max;
   celsiusMinTemp = response.data.main.temp_min;
@@ -200,6 +205,72 @@ function changeUnitFahr(event) {
 let fahrenheit = document.querySelector("#getFahrenheit");
 fahrenheit.addEventListener("click", changeUnitFahr);
 
+function getForecast(response) {
+  let displayForecast = document.querySelector("#forecast");
+  displayForecast.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 5; index++) {
+    forecast = response.data.list[index];
+    displayForecast.innerHTML += `<div class="col" >
+            <div class="card">
+              <div class="card-body">
+                <div class="weatherSymbols" >
+                  ${forecastEmoji(forecast.weather[0].icon)}
+                </div>
+                <br />
+                <strong>
+                  ${getTime(forecast.dt * 1000)}
+                </strong>
+                <br />
+                <br />
+                <div class="temperature">
+                  <span class="maxTemperature"> ${Math.round(
+                    forecast.main.temp_max
+                  )}</span>° / 
+                  <span class="minTemperature"> ${Math.round(
+                    forecast.main.temp_min
+                  )}</span>°
+                </div>
+              </div>
+            </div>
+          </div>`;
+  }
+}
+
+function forecastEmoji(icon) {
+  let emoji = "";
+
+  if (icon === "01d") {
+    emoji = `<img src="images/sun.png" alt="clear-sky"/>`;
+  } else if (icon === "01n") {
+    emoji = `<img src="images/moon.png" alt="clear-sky"/>`;
+  } else if (icon === "02d") {
+    emoji = `<img src="images/sun-small-cloud.png" alt="few-clouds"/>`;
+  } else if (icon === "02n") {
+    emoji = `<img src="images/moon-cloud.png" alt="few-clouds"/>`;
+  } else if (icon === "03d") {
+    emoji = `<img src="images/sun-big-cloud.png" alt="scattered-clouds"/>`;
+  } else if (icon === "03n") {
+    emoji = `<img src="images/cloud.png" alt="scattered-clouds"/>`;
+  } else if (icon === "04d" || icon === "04n") {
+    emoji = `<img src="images/broken-clouds.png" alt="broken-clouds"/>`;
+  } else if (icon === "09d" || icon === "09n") {
+    emoji = `<img src="images/shower-rain.png" alt="shower-rain"/>`;
+  } else if (icon === "10d") {
+    emoji = `<img src="images/sun-cloud-rain.png" alt="rain"/>`;
+  } else if (icon === "10n") {
+    emoji = `<img src="images/cloud-rain.png" alt="rain"/>`;
+  } else if (icon === "11d" || icon === "11n") {
+    emoji = `<img src="images/thunder-cloud-rain.png" alt="thunderstorm"/>`;
+  } else if (icon === "13d" || icon === "13n") {
+    emoji = `<img src="images/cloud-snow.png" alt="snow"/>`;
+  } else if (icon === "50d" || icon === "50n") {
+    emoji = `<img src="images/fog.png" alt="mist"/>`;
+  }
+  return emoji;
+}
+
 function showPosition(position, city) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
@@ -211,6 +282,10 @@ function showPosition(position, city) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric`;
 
   axios.get(`${apiUrl}&appid=${apiKey}`).then(getWeather);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast/?lat=${lat}&lon=${lon}&units=metric`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(getForecast);
 }
 
 function getLocation() {
