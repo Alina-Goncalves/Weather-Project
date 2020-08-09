@@ -42,16 +42,17 @@ function getTime(date) {
 let currentTime = document.querySelector("#currentTime");
 currentTime.innerHTML = getTime(presentDay);
 
+function apiSearch(city) {
+  let apiKey = "06b5f102b5d87678883f70debd49073e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+
+  axios.get(`${apiUrl}&appid=${apiKey}`).then(getWeather);
+}
+
 function getCity(event) {
   event.preventDefault();
   let inputCity = document.querySelector("#inputCity");
-  let city = document.querySelector("#city");
-  city.innerHTML = `${inputCity.value}`;
-
-  let apiKey = "06b5f102b5d87678883f70debd49073e";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&units=metric`;
-
-  axios.get(`${apiUrl}&appid=${apiKey}`).then(getWeather);
+  apiSearch(inputCity.value);
 }
 let formCity = document.querySelector("#inputForm");
 formCity.addEventListener("submit", getCity);
