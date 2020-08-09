@@ -68,10 +68,10 @@ function getWeather(response) {
   displayTemp.innerHTML = Math.round(response.data.main.temp);
 
   let displayMaxTemp = document.querySelector(".dayMaxTemperature");
-  displayMaxTemp.innerHTML = Math.round(response.data.main.temp_max);
+  displayMaxTemp.innerHTML = `${Math.round(response.data.main.temp_max)}°`;
 
   let displayMinTemp = document.querySelector(".dayMinTemperature");
-  displayMinTemp.innerHTML = Math.round(response.data.main.temp_min);
+  displayMinTemp.innerHTML = ` / ${Math.round(response.data.main.temp_min)}°`;
 
   let displayDescription = document.querySelector(".weatherDescription");
   displayDescription.innerHTML = response.data.weather[0].description;
@@ -124,6 +124,38 @@ function getWeather(response) {
   } else {
     return (windDir.innerHTML = `\xa0N`);
   }
+
+  let displayIcon = document.querySelector("#bigEmoji");
+  let icon = response.data.weather[0].icon;
+
+  if (icon === "01d") {
+    displayIcon.innerHTML = `<img src="images/sun.png" alt="clear-sky"/>`;
+  } else if (icon === "01n") {
+    displayIcon.innerHTML = `<img src="images/moon.png" alt="clear-sky"/>`;
+  } else if (icon === "02d") {
+    displayIcon.innerHTML = `<img src="images/sun-small-cloud.png" alt="few-clouds"/>`;
+  } else if (icon === "02n") {
+    displayIcon.innerHTML = `<img src="images/moon-cloud.png" alt="few-clouds"/>`;
+  } else if (icon === "03d") {
+    displayIcon.innerHTML = `<img src="images/sun-big-cloud.png" alt="scattered-clouds"/>`;
+  } else if (icon === "03n") {
+    displayIcon.innerHTML = `<img src="images/cloud.png" alt="scattered-clouds"/>`;
+  } else if (icon === "04d" || icon === "04n") {
+    displayIcon.innerHTML = `<img src="images/broken-clouds.png" alt="broken-clouds"/>`;
+  } else if (icon === "09d" || icon === "09n") {
+    displayIcon.innerHTML = `<img src="images/shower-rain.png" alt="shower-rain"/>`;
+  } else if (icon === "10d") {
+    displayIcon.innerHTML = `<img src="images/sun-cloud-rain.png" alt="rain"/>`;
+  } else if (icon === "10n") {
+    displayIcon.innerHTML = `<img src="images/cloud-rain.png" alt="rain"/>`;
+  } else if (icon === "11d" || icon === "11n") {
+    displayIcon.innerHTML = `<img src="images/thunder-cloud-rain.png" alt="thunderstorm"/>`;
+  } else if (icon === "13d" || icon === "13n") {
+    displayIcon.innerHTML = `<img src="images/cloud-snow.png" alt="snow" />`;
+  } else if (icon === "50d" || icon === "50n") {
+    displayIcon.innerHTML = `<img src="images/fog.png" alt="mist"/>`;
+  }
+  return icon;
 }
 
 function showPosition(position, city) {
